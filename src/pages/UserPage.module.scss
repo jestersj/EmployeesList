@@ -1,0 +1,8 @@
+@import "@/variables";
+.link {
+    text-decoration: none;
+    color: $text-color;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}

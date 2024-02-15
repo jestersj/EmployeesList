@@ -1,0 +1,23 @@
+@import "@/variables";
+.cont {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    span {
+        width: 25px;
+        height: 25px;
+        border: 2px solid $secondary-color;
+        line-height: 25px;
+        text-align: center;
+        color: $secondary-color;
+    }
+    input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
+    input[type="checkbox"]:checked ~ span::before {
+        content: '\2713';
+    }
+}

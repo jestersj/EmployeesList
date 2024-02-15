@@ -1,0 +1,31 @@
+@import "@/variables";
+.card {
+    background: $primary-color;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    color: $text-color;
+    text-decoration: none;
+
+    border-radius: 20px;
+    border: 2px solid transparent;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    transition: 0.4s;
+
+    b {
+        flex: 1;
+    }
+
+    &:hover {
+        transform: scale(105%);
+        border: 2px solid $secondary-color;
+    }
+}
+.checkbox_cont {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,19 @@
+.cont {
+    display: flex;
+    margin-bottom: 30px;
+}
+.col {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    span {
+        font-size: 1.3rem;
+    }
+    .dropdown_block {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+}
