@@ -1,0 +1,24 @@
+@import "@/variables";
+.cont {
+    text-align: center;
+    padding-top: 100px;
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    a {
+        border: 2px solid $secondary-color;
+        text-decoration: none;
+        color: $text-color;
+        padding: 10px;
+    }
+}
+
+@media (max-width: $mobile-screen-width) {
+    .cont {
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+}

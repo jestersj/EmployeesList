@@ -1,8 +1,9 @@
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import HomePage from "@/pages/HomePage";
 import UserPage from "@/pages/UserPage";
 import AddUserPage from "@/pages/AddUserPage";
+import ErrorPage from "@/pages/ErrorPage";
 
 const routes = [
     {
@@ -16,6 +17,14 @@ const routes = [
     {
         path: '/add-user',
         element: <AddUserPage/>
+    },
+    {
+        path: '/error',
+        element: <ErrorPage/>
+    },
+    {
+        path: '/*',
+        element: <Navigate to={'/error'}/>
     },
 ]
 
