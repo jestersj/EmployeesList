@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {IUser} from "@/types/types";
 import {Link} from "react-router-dom";
-import s from "./UserItem.module.scss";
 import Checkbox from "@/components/shared/Checkbox/Checkbox";
+import s from "./UserItem.module.scss";
 
 interface Props {
     user: IUser

@@ -1,3 +1,4 @@
+@import "@/variables";
 * {
     margin: 0;
     padding: 0;
@@ -7,5 +8,18 @@ html {
     font-size: 20px;
 }
 main {
-    margin: 50px 5vw;
+    margin: 50px 8vw;
+}
+button {
+    cursor: pointer;
+}
+
+@media (max-width: $mobile-screen-width) {
+    html {
+        font-size: 14px;
+    }
+
+    main {
+        margin: 20px 3vw;
+    }
 }

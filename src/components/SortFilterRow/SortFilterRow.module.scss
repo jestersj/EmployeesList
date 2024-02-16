@@ -1,3 +1,4 @@
+@import "@/variables";
 .cont {
     display: flex;
     margin-bottom: 30px;
@@ -15,5 +16,27 @@
         display: flex;
         align-items: center;
         gap: 10px;
+    }
+}
+.reset_btn {
+    background: none;
+    border: 2px solid $secondary-color;
+    outline: none;
+    width: 250px;
+
+    font-size: 0.8rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: $mobile-screen-width) {
+    .col {
+        width: 50%;
+    }
+    .reset_btn {
+        width: 70%;
     }
 }

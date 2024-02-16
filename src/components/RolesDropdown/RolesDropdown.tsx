@@ -33,7 +33,11 @@ const RolesDropdown: FC<Props> = ({roles, selectFunction, currentItem}) => {
     }, [])
     return (
         <div className={s.dropdown} ref={dropdownRef}>
-            <button className={s.toggle_btn} onClick={toggle} type={'button'}>
+            <button
+                className={s.toggle_btn}
+                onClick={toggle}
+                type={'button'}
+            >
                 {currentItem ? currentItem : 'Выберите роль'}
             </button>
             {
@@ -41,11 +45,12 @@ const RolesDropdown: FC<Props> = ({roles, selectFunction, currentItem}) => {
                 <div className={s.items_list}>
                     {
                         roles.map(el =>
-                            <div>
-                                <button className={s.item_btn}
-                                        onClick={() => handleClick(el)}
-                                >{el}</button>
-                            </div>
+                            <button className={s.item_btn}
+                                    onClick={() => handleClick(el)}
+                                    key={el}
+                            >
+                                {el}
+                            </button>
                         )
                     }
                 </div>

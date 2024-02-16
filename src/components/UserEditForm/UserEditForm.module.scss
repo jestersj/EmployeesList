@@ -1,11 +1,13 @@
+@import "@/variables";
 .form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
 
     input {
         border: none;
-        border-bottom: 1px solid;
+        border-bottom: 2px solid $secondary-color;
         outline: none;
         font-size: 1rem;
     }
@@ -14,13 +16,35 @@
         flex-direction: column;
         gap: 10px;
         font-size: 1.2rem;
+
+        width: 50%;
     }
 }
 .btn_cont {
     display: flex;
     justify-content: center;
+
+    button {
+        border: 2px solid $secondary-color;
+        background: none;
+        font-size: 1rem;
+        padding: 10px;
+    }
 }
 .checkbox_cont {
     display: flex;
     justify-content: center;
+}
+
+.error_cont {
+    text-align: center;
+    color: red;
+}
+
+@media (max-width: $mobile-screen-width) {
+    .form {
+        .label {
+            width: 100%;
+        }
+    }
 }

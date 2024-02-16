@@ -1,6 +1,14 @@
+@import "@/variables";
 .container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+@media (max-width: $mobile-screen-width) {
+    .container {
+        justify-content: space-between;
+        gap: 10px;
+    }
 }

@@ -1,12 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import initialUserList from "@/employees.json";
-import {IUser, ISort, IFilter} from "@/types/types";
+import {IUser, ISort, IFilter, IRole} from "@/types/types";
+import {sortCallback} from "@/helpers/sortCallback";
+import {filterCallback} from "@/helpers/filterCallback";
 
 interface IState {
     users: IUser[]
     sortedAndFilteredUsers: IUser[]
     sortedBy: null | ISort,
-    filteredBy: null | IFilter
+    filteredBy: IFilter
 }
 const initialState: IState = {
     users: initialUserList,
@@ -15,29 +17,12 @@ const initialState: IState = {
     //необходимо хранить изначальный массив пользователей, а показывать уже модифицированный
     sortedAndFilteredUsers: initialUserList,
     sortedBy: null,
-    filteredBy: null
+    filteredBy: {
+        isArchive: false,
+        role: null
+    }
 }
 
-const parseDate = (str: string) => {
-    const [day, month,year] = str.split('.').reverse().map(el => Number(el))
-    return new Date(day, month, year).getTime()
-}
-const sortCallback = (sortParam: ISort, a: IUser, b: IUser) => {
-    let aVal: number | string = a[sortParam]
-    let bVal: number | string = b[sortParam]
-    if (sortParam === 'birthday') {
-        aVal = parseDate(aVal)
-        bVal = parseDate(bVal)
-        return aVal - bVal
-    }
-    if (aVal > bVal) {
-        return 1
-    }
-    if (aVal < bVal) {
-        return -1
-    }
-    return 0
-}
 const usersSlice = createSlice({
     name: 'users',
     initialState,
@@ -50,28 +35,30 @@ const usersSlice = createSlice({
                 state.sortedAndFilteredUsers = state.users
             }
         },
+
         addUser(state, action: PayloadAction<IUser>) {
             state.users.push(action.payload)
             state.sortedAndFilteredUsers = state.users
         },
-        selectFilter(state, action: PayloadAction<IFilter | null>) {
-            state.filteredBy = action.payload
+
+        selectFilterRole(state, action: PayloadAction<IRole | null>) {
+            state.filteredBy.role = action.payload
         },
+
+        selectFilterIsArchive(state, action: PayloadAction<boolean>) {
+            state.filteredBy.isArchive = action.payload
+        },
+
         selectSort(state, action: PayloadAction<ISort | null>) {
             state.sortedBy = action.payload
         },
+
         sortAndFilterBy(state) {
-            let arr: IUser[] = state.users
+            let arr: IUser[] = [...state.users]
             //Сначала фильтруем массив, чтобы осталось сортировать меньше пользователей
             //т.к. фильтрация занимает всего O(n), сортировка в среднем больше
             if (state.filteredBy) {
-                arr = arr.filter(el => {
-                    if (state.filteredBy === 'isArchive') {
-                        return el.isArchive === true
-                    } else {
-                        return el.role === state.filteredBy
-                    }
-                })
+                arr = arr.filter(el => filterCallback(el, state.filteredBy))
             }
             if (state.sortedBy) {
                 arr = arr
@@ -79,9 +66,13 @@ const usersSlice = createSlice({
             }
             state.sortedAndFilteredUsers = arr
         },
+
         resetState(state) {
             state.sortedBy = null
-            state.filteredBy = null
+            state.filteredBy = {
+                isArchive: false,
+                role: null
+            }
             state.sortedAndFilteredUsers = state.users
         }
     }
@@ -90,7 +81,8 @@ const usersSlice = createSlice({
 export const {
     editUser,
     addUser,
-    selectFilter,
+    selectFilterRole,
+    selectFilterIsArchive,
     selectSort,
     sortAndFilterBy,
     resetState

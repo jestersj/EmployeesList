@@ -4,6 +4,7 @@
     align-items: center;
     gap: 10px;
     user-select: none;
+    cursor: pointer;
     span {
         width: 25px;
         height: 25px;
@@ -19,5 +20,15 @@
     }
     input[type="checkbox"]:checked ~ span::before {
         content: '\2713';
+    }
+}
+
+@media (max-width: $mobile-screen-width) {
+    .cont {
+        span {
+            width: 17px;
+            height: 17px;
+            line-height: 15px;
+        }
     }
 }

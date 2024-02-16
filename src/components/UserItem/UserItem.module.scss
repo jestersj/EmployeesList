@@ -29,3 +29,10 @@
     display: flex;
     justify-content: center;
 }
+
+@media (max-width: $mobile-screen-width) {
+    .card {
+        justify-content: space-between;
+        width: 47%;
+    }
+}

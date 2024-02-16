@@ -11,5 +11,8 @@ export type ISort = 'name' | 'birthday'
 
 export type IRole = 'driver' | 'waiter' | 'cook'
 
-export type IFilter = 'isArchive' | IRole
+export interface IFilter {
+    isArchive: boolean
+    role: null | IRole
+}
 
