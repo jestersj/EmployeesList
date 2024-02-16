@@ -46,7 +46,7 @@ const SortFilterRow = () => {
                     checked={sortedBy === 'birthday'}
                     onChange={() => handleSort('birthday')}
                 />
-                {(sortedBy || filteredBy) &&
+                {(sortedBy || filteredBy.role || filteredBy.isArchive) &&
                     <button
                         onClick={handleReset}
                         className={s.reset_btn}
