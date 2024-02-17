@@ -1,5 +1,5 @@
 import {ISort, IUser} from "@/types/types";
-import {parseDate} from "@/helpers/parseData";
+import {parseDate} from "@/helpers/parseDate";
 
 export const sortCallback = (sortParam: ISort, a: IUser, b: IUser) => {
     let aVal: number | string = a[sortParam]

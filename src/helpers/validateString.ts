@@ -11,7 +11,7 @@ export const validateString = (input: string, pattern: Pattern) => {
         }
         const [year, month, day] = input.split('.')
             .map(el => Number(el)).reverse()
-        const inputDate = new Date(year, month, day)
+        const inputDate = new Date(year, month-1, day)
         const currentDate = new Date();
         return inputDate <= currentDate;
     }
